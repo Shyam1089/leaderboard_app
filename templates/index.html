@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Leaderboard App</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo">Leaderboard App</div>
+            <div>
+                <button class="btn btn-primary" data-toggle="modal" data-target="#addUserModal">Add User</button>
+                <button id="updateWinnersBtn" class="btn btn-success">Update Winners</button>
+            </div>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="card">
+            <div class="card-header">
+                <span>Users Leaderboard</span>
+            </div>
+            <div class="card-body">
+                <div id="usersList">
+                    <p>Loading users...</p>
+                </div>
+                <!-- User Details Popover -->
+                <div id="userDetailsPopover" class="popover">
+                    <div class="popover-arrow"></div>
+                    <div class="popover-header">User Details</div>
+                    <div class="popover-content">
+                        <div class="popover-label">Name:</div>
+                        <div id="popoverName" class="popover-value"></div>
+                        
+                        <div class="popover-label">Age:</div>
+                        <div id="popoverAge" class="popover-value"></div>
+                        
+                        <div class="popover-label">Points:</div>
+                        <div id="popoverPoints" class="popover-value"></div>
+                        
+                        <div class="popover-address">
+                            <div class="popover-label">Address:</div>
+                            <div id="popoverAddress"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-header">
+                <span>Winners History</span>
+            </div>
+            <div class="card-body">
+                <div id="winnersList">
+                    <p>Loading winners...</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Add User Modal -->
+    <div id="addUserModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Add New User</h2>
+                <span class="close">&times;</span>
+            </div>
+            <form id="addUserForm">
+                <div class="form-group">
+                    <label for="userName">Name</label>
+                    <input type="text" id="userName" class="form-control" required>
+                </div>
+                <div class="form-group">
+                    <label for="userAge">Age</label>
+                    <input type="number" id="userAge" class="form-control" min="1" required>
+                </div>
+                <div class="form-group">
+                    <label for="userAddress">Address</label>
+                    <textarea id="userAddress" class="form-control" required></textarea>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn modal-cancel">Cancel</button>
+                    <button type="submit" class="btn btn-primary">Add User</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- User Details Modal -->
+    <div id="userDetailsModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>User Details</h2>
+                <span class="close">&times;</span>
+            </div>
+            <div id="userDetailsContent" class="user-details-grid">
+                <div class="form-group">
+                    <div class="user-details-label">Name</div>
+                    <div id="detailsName" class="user-details-value"></div>
+                </div>
+                <div class="form-group">
+                    <div class="user-details-label">Age</div>
+                    <div id="detailsAge" class="user-details-value"></div>
+                </div>
+                <div class="form-group">
+                    <div class="user-details-label">Points</div>
+                    <div id="detailsPoints" class="user-details-value"></div>
+                </div>
+                <div class="form-group">
+                    <div class="user-details-label">Address</div>
+                    <div id="detailsAddress" class="user-details-value"></div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn modal-cancel">Close</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="{% static 'js/app.js' %}"></script>
+</body>
+</html> 
