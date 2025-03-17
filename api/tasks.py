@@ -2,7 +2,6 @@ import logging
 from celery import shared_task
 from .views import update_winners
 from django.http import HttpRequest
-from rest_framework.request import Request
 
 logger = logging.getLogger(__name__)
 
@@ -13,10 +12,13 @@ def update_winners_task():
     This task is scheduled to run every 5 minutes.
     """
     try:
+        # Create a dummy request object - use HttpRequest directly
         dummy_request = HttpRequest()
         dummy_request.method = 'POST'
-        request = Request(dummy_request)
-        response = update_winners(request)
+        
+        # Call the view function directly with the HttpRequest
+        response = update_winners(dummy_request)
+        
         # Log the result
         if response.status_code == 201:  # Created
             data = response.data
